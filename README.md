@@ -1,10 +1,14 @@
-# smart-contract-security-portfolio
-My vulnerability submissions for Cyfrin CodeHawks' First Flight challenges.
-
 # Smart Contract Security Portfolio 🛡️
 
-This portfolio documents my work in auditing smart contracts through [Cyfrin CodeHawks](https://codehawks.cyfrin.io/), focusing on real-world projects during their "First Flight" challenge series.
+This portfolio documents my vulnerability submissions to the Cyfrin CodeHawks “First Flight” program, focusing on real smart contracts.
 
-### 🔍 Projects Audited
+## Projects:
 - [Rock Paper Scissors](./RockPaperScissors/)
 - [Weather Witness](./WeatherWitness/)
+
+Each folder includes:
+- Summary
+- Vulnerability Details
+- Impact
+- Tools Used
+- Mitigation Recommendations
