@@ -1,0 +1,32 @@
+# Missing Null Check on Oracle Result
+
+**Platform:** Cyfrin CodeHawks  
+**Link:** [Submission #229](https://codehawks.cyfrin.io/c/2025-05-weather-witness/s/229)  
+**Severity:** High  
+**Status:** Acknowledged
+
+🧠 Summary
+The contract assumes the oracle will always return valid data. If the oracle fails or returns zero values, the logic may misbehave or proceed with invalid data.
+
+🔍 Vulnerability Details
+Oracle call results are used without validation:
+
+(uint256 temp, uint256 humidity) = weatherOracle.getWeather();
+
+No checks are in place to ensure these values are within a sane range or even non-zero.
+
+💥 Impact
+Can cause incorrect reward distribution.
+
+May be exploited by feeding invalid (e.g., zero) data.
+
+🛠️ Tools Used
+Manual review
+
+Oracle mocking in testing
+
+🧩 Recommendation
+Add input validation for oracle values:
+
+require(temp > 0 && humidity > 0, "Invalid oracle response");
+  
