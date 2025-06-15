@@ -1,4 +1,4 @@
-# Missing Null Check on Oracle Result
+# 1. Missing Null Check on Oracle Result
 
 **Platform:** Cyfrin CodeHawks  
 **Link:** [Submission #229](https://codehawks.cyfrin.io/c/2025-05-weather-witness/s/229)  
@@ -30,7 +30,7 @@ Add input validation for oracle values:
 
 require(temp > 0 && humidity > 0, "Invalid oracle response");
 
-# Incentive Misalignment in Weather Reporting
+#2. Incentive Misalignment in Weather Reporting
 
 **Platform:** Cyfrin CodeHawks  
 **Link:** [Submission #224](https://codehawks.cyfrin.io/c/2025-05-weather-witness/s/224)  
