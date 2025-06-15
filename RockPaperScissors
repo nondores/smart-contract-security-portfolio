@@ -5,10 +5,10 @@
 **Severity:** Medium  
 **Status:** Acknowledged
 
-## 🧠 Summary
+🧠 Summary
 A malicious or unresponsive player can indefinitely stall the game by never revealing their move. This leads to locked funds and an unresolved game state.
 
-## 🔍 Vulnerability Details
+🔍 Vulnerability Details
 The contract fails to enforce a timeout in the `revealMove` phase. While a `lastAction` timestamp is tracked, there is no logic to recover or cancel a stuck game session.
 
 function revealMove(bytes32 _salt, string calldata _move) external {
@@ -16,16 +16,16 @@ function revealMove(bytes32 _salt, string calldata _move) external {
     // No check on time passed since commitment
 };
 
-##💥 Impact
+💥 Impact
 Funds remain indefinitely locked.
 The second player (who has already revealed) suffers economic loss.
 Game is vulnerable to griefing attacks.
 
-##🛠️ Tools Used
+🛠️ Tools Used
 Manual source code analysis
 Remix testing
 
-##🧩 Recommendation
+🧩 Recommendation
 Introduce a revealTimeout parameter and enforce a condition in revealMove:
 
 require(block.timestamp <= lastAction + revealTimeout, "Reveal phase expired");
