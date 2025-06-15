@@ -29,4 +29,37 @@ Oracle mocking in testing
 Add input validation for oracle values:
 
 require(temp > 0 && humidity > 0, "Invalid oracle response");
+
+# Incentive Misalignment in Weather Reporting
+
+**Platform:** Cyfrin CodeHawks  
+**Link:** [Submission #224](https://codehawks.cyfrin.io/c/2025-05-weather-witness/s/224)  
+**Severity:** Medium  
+**Status:** Acknowledged
+
+## 🧠 Summary
+There is no slashing or penalty mechanism for inaccurate or deliberately wrong weather reporting. This opens the system to Sybil and manipulation risks.
+
+## 🔍 Vulnerability Details
+The current logic rewards based on participation but not on data accuracy.
+
+## 💥 Impact
+- Dishonest actors can game the system.
+- Weather reports can become unreliable, affecting downstream logic or rewards.
+
+## 🛠️ Tools Used
+- Manual logic modeling
+- Game theory analysis
+
+## 🧩 Recommendation
+Introduce a stake + slashing mechanism or majority consensus checks:
+
+// Add stake
+mapping(address => uint256) public reporterStakes;
+
+// Slash if deviating too far from consensus
+function slashDishonestReporters(...) public {
+    ...
+}
+
   
