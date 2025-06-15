@@ -15,7 +15,7 @@ The contract fails to enforce a timeout in the `revealMove` phase. While a `last
 function revealMove(bytes32 _salt, string calldata _move) external {
     require(state == GameState.Committed, "Invalid state");
     // No check on time passed since commitment
-}
+}```
 ##💥 Impact
 Funds remain indefinitely locked.
 The second player (who has already revealed) suffers economic loss.
@@ -28,20 +28,17 @@ Remix testing
 ##🧩 Recommendation
 Introduce a revealTimeout parameter and enforce a condition in revealMove:
 
-solidity
-Copy
-Edit
+```solidity
 require(block.timestamp <= lastAction + revealTimeout, "Reveal phase expired");
+```
 Also, implement a recovery function:
 
-solidity
-Copy
-Edit
+```solidity
 function claimTimeout() external {
     require(state == GameState.Committed, "Invalid state");
     require(block.timestamp > lastAction + revealTimeout, "Too early");
 
     // Return funds to player who revealed or allow game reset
-}
+}```
 ```bash
 nano WeatherWitness/vulnerability-1.md
